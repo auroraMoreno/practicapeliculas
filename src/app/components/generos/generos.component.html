@@ -1,0 +1,38 @@
+<h1>Generos disponibles</h1>
+<form #generoForm>
+    <select #selectGenero name="selectGenero" (change)="buscarGenero()">
+        <option *ngFor="let g of generos" value="{{g.idGenero}}">{{g.nombreGenero}}</option>
+    </select>
+</form>
+
+<form #tituloForm>
+<input type="text" #cajaTitulo name="cajaTitulo"/>
+<button (click)="buscarTitulo()">Buscar</button>
+</form>
+
+<div *ngIf="titulos.length > 0">
+    <table>
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Fecha de estreno</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of titulos">
+                <td>{{t.titulo}}</td>
+                <td>{{t.fechaEstreno}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div>
+    <dl *ngFor="let p of peliculas">
+        <dt>Titulo: {{p.titulo}}</dt>
+        <img src="{{p.foto}}" style="height: 150px; width: 150px;"/>
+        <dt>Argumento: {{p.argumento}}</dt>
+        <a [routerLink]="['/detalles',p.idPelicula]">Detalles</a>
+    </dl>
+</div>
